@@ -29,4 +29,11 @@ class HomeController extends Controller
     public function shoutHome(){
         return view("shouthome");
     }
+
+    public function saveStatus(Request $request){
+        if(Auth::check()){
+            $status = $request->post('status');
+        }
+
+    }
 }
