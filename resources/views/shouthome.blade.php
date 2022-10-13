@@ -88,5 +88,5 @@
 @endsection
 
 @section('script')
-    <script> alert('hello'); </script>
+    <script>  </script>
 @endsection
