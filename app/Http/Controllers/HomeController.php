@@ -36,6 +36,18 @@ class HomeController extends Controller
         return view("shouthome", array('status' => $status, 'avatar' => $avatar));
     }
 
+    public function publicTimeline($nickname){
+        $user = User::where('nickname',$nickname)->first();
+        if($user){
+            $status = Status::where('user_id', $user->id)->orderBy('id','desc')->get();
+            $avatar = empty($user->avatar)? asset('images/avatar.jpg'): $user->avatar;
+            $name = $user->name;
+            return view("shoutpublic", array('status' => $status, 'avatar' => $avatar, 'name' => $name));
+        } else{
+            return redirect('/');
+        }
+    }
+
     public function saveStatus(Request $request){
         if(Auth::check()){
             $status = $request->post('status');
