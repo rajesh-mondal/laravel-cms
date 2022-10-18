@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,14 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', [WelcomeController::class,'index']);
 Route::get('/shout', [HomeController::class,'shoutHome'])->name('shout');
 Route::post('/savestatus', [HomeController::class,'saveStatus'])->name('shout.save');
 Route::get('/profile', [HomeController::class,'profile'])->name('shout.profile');
